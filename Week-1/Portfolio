@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <header>
+    <h1>Garvi Shah</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header> 
+
+  <section class="hero">
+    <h2>Hello, I'm a Web Developer</h2>
+    <p>I create beautiful and functional websites using HTML & CSS.</p>
+  </section>
+
+  <section id="about" class="section">
+    <h2>About Me</h2>
+    <p>I’m passionate about web design and love turning ideas into reality using code. Skilled in HTML, CSS, and a bit of JS.</p>
+  </section>
+
+  <section id="projects" class="section">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="project-card">
+        <h3>Project One</h3>
+        <p>A simple website built using HTML and CSS.</p>
+      </div>
+      <div class="project-card">
+        <h3>Project Two</h3>
+        <p>Responsive portfolio website (this one!).</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <h2>Contact</h2>
+    <p>Email: shahgarvi253@gmail.com</p>
+    <p>LinkedIn: <a href="#" target="_blank">Garvi Shah</a></p>
+  </section>
+
+</body>
+</html>
+
+"style.css"
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  background: #f7f7f7;
+  color: #333;
+}
+
+header {
+  background: #4b0082;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.hero {
+  background: #ddd;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.section {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.projects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.project-card {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 300px;
+  border-radius: 8px;
+}
+
+footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+@media (max-width: 600px) {
+  .projects {
+    flex-direction: column;
+    align-items: center;
+  }
+}
