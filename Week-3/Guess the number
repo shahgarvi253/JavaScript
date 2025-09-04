@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random Number Selection Game</title>
+  <link rel="stylesheet" href="game.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: lightyellow;
+      margin: 20px;
+    }
+    h2 {
+      color: darkblue;
+    }
+    input {
+      padding: 5px;
+      border: 1px solid #333;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 5px 12px;
+      margin: 5px;
+      border: 1px solid #333;
+      background-color: lightgray;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: gray;
+      color: white;
+    }
+    #display, #score {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box-container">
+    <h2>Guess the Number Game</h2>
+    <div id="box">
+      <input type="number" placeholder="Enter a Number" id="Number">
+    </div>
+    <br>
+    <button onclick="evaluateInput()">Submit</button>
+    <button onclick="location.reload()">New Game</button>
+    <p id="display">Result:</p>
+    <p id="score">Score: 0</p>
+  </div>
+
+  <script>
+    var randomNumber = Math.floor(Math.random() * 10) + 1;
+    var turnCounter = 0;
+
+    var NumberInput = document.getElementById("Number");
+    var display = document.getElementById("display");
+    var scoreBox = document.getElementById("score");
+
+    function evaluateInput() {
+      turnCounter++;
+      let guess = parseInt(NumberInput.value);
+
+      if (guess < randomNumber) {
+        display.innerText = "Result: Number is too small, try a bigger one.\nTurns: " + turnCounter;
+      } else if (guess > randomNumber) {
+        display.innerText = "Result: Number is too big, try a smaller one.\nTurns: " + turnCounter;
+      } else if (guess === randomNumber) {
+        display.innerText = "🎉 You guessed correctly! You win!\nTotal Turns: " + turnCounter;
+      
+        let score = (turnCounter === 1) ? 10 : Math.max(1, 10 - turnCounter);
+        scoreBox.innerText = "Score: " + score;
+      }
+    }
+  </script>
+</body>
+</html>
