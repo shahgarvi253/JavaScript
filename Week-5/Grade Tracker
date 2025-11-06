@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grade</title>
+    <style>
+        /* Solid background */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            margin: 0;
+            background-color: #d0e7ff; /* Light solid background */
+        }
+
+        h1 {
+            text-align: left;
+            font-size: 36px;
+            color: #333;
+        }
+
+        /* Center-left alignment container */
+        .content {
+            max-width: 500px;
+            margin-left: 50px; /* Slightly shifted from left */
+        }
+
+        table {
+            margin: 0;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 10px;
+            font-size: 20px;
+        }
+
+        input {
+            font-size: 20px;
+            padding: 5px;
+            width: 250px;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        /* Student result box */
+        .student-box {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 15px;
+            padding: 10px;
+            border: 2px solid #4CAF50;
+            background-color: #e8f5e9;
+            border-radius: 5px;
+            width: fit-content;
+            min-width: 200px;
+        }
+
+        .student-box p {
+            margin: 4px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Student Grade</h1>
+
+    <div class="content">
+        <table>
+            <tr>
+                <td><label for="name">Student Name:</label></td>
+                <td><input type="text" id="name" placeholder="Enter student name"></td>
+            </tr>
+            <tr>
+                <td><label for="marks">Marks:</label></td>
+                <td><input type="number" id="marks" placeholder="Enter marks"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button onclick="addStudent()">Add Student</button>
+                    <button onclick="showResults()">Show Grades</button>
+                </td>
+            </tr>
+        </table>
+
+        <div id="results"></div>
+    </div>
+
+    <script>
+        var students = [];
+
+        function addStudent() {
+            var name = document.getElementById('name').value.trim();
+            var marks = parseFloat(document.getElementById('marks').value);
+
+            if (!name) {
+                alert('Please enter student name');
+                return;
+            }
+            if (isNaN(marks) || marks < 0 || marks > 100) {
+                alert('Please enter valid marks between 0 and 100');
+                return;
+            }
+
+            students.push({name: name, marks: marks});
+            document.getElementById('name').value = '';
+            document.getElementById('marks').value = '';
+            alert('Student added!');
+        }
+
+        function showResults() {
+            var results = document.getElementById('results');
+            results.innerHTML = '';
+
+            if (students.length === 0) {
+                results.innerText = 'No students added yet.';
+                return;
+            }
+
+            for (var i = 0; i < students.length; i++) {
+                var student = students[i];
+                var grade = getGrade(student.marks);
+
+                // Create student box
+                var box = document.createElement('div');
+                box.className = 'student-box';
+                box.innerHTML = '<p>Name: ' + student.name + '</p>' +
+                                '<p>Marks: ' + student.marks + '</p>' +
+                                '<p>Grade: ' + grade + '</p>';
+
+                results.appendChild(box);
+            }
+        }
+
+        function getGrade(marks) {
+            if (marks >= 90) return 'A';
+            if (marks >= 80) return 'B';
+            if (marks >= 70) return 'C';
+            if (marks >= 60) return 'D';
+            return 'F';
+        }
+    </script>
+
+</body>
+</html>
