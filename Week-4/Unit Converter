@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter</title>
+    <style>
+        /* Very light simple background */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            margin: 0;
+            background-color: #fafafa; /* Lightest color background */
+        }
+
+        h1 {
+            text-align: left;
+            font-size: 36px;
+            color: #333;
+        }
+
+        table {
+            margin: 0;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 10px;
+            font-size: 20px;
+        }
+
+        select, input {
+            font-size: 20px;
+            padding: 5px;
+            width: 250px;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        /* Result design */
+        #result {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 20px;
+            padding: 10px;
+            border: 2px solid #4CAF50;
+            background-color: #e8f5e9;
+            width: fit-content;
+            min-width: 150px;
+            text-align: center;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Unit Converter</h1>
+
+    <table>
+        <tr>
+            <td><label for="conversion">Conversion:</label></td>
+            <td>
+                <select id="conversion">
+                    <option value="cToF">Celsius to Fahrenheit</option>
+                    <option value="fToC">Fahrenheit to Celsius</option>
+                    <option value="kmToMiles">Kilometers to Miles</option>
+                    <option value="milesToKm">Miles to Kilometers</option>
+                    <option value="mToKm">Meters to Kilometers</option>
+                    <option value="gToKg">Grams to Kilograms</option>
+                    <option value="kgToG">Kilograms to Grams</option>
+                    <option value="cmToM">Centimeters to Meters</option>
+                    <option value="mToCm">Meters to Centimeters</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="inputValue">Value:</label></td>
+            <td><input type="number" id="inputValue" placeholder="Enter value"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button onclick="convert()">Convert</button>
+            </td>
+        </tr>
+    </table>
+
+    <p id="result"></p>
+
+    <script>
+        function convert() {
+            const value = parseFloat(document.getElementById('inputValue').value);
+            const conversionType = document.getElementById('conversion').value;
+            let res = "";
+
+            if (isNaN(value)) {
+                res = "Please enter a valid number!";
+            } else {
+                switch(conversionType) {
+                    case 'cToF':
+                        res = (value * 9/5 + 32).toFixed(2) + " °F";
+                        break;
+                    case 'fToC':
+                        res = ((value - 32) * 5/9).toFixed(2) + " °C";
+                        break;
+                    case 'kmToMiles':
+                        res = (value * 0.621371).toFixed(2) + " miles";
+                        break;
+                    case 'milesToKm':
+                        res = (value / 0.621371).toFixed(2) + " km";
+                        break;
+                    case 'mToKm':
+                        res = (value / 1000).toFixed(3) + " km";
+                        break;
+                    case 'gToKg':
+                        res = (value / 1000).toFixed(2) + " kg";
+                        break;
+                    case 'kgToG':
+                        res = (value * 1000).toFixed(2) + " g";
+                        break;
+                    case 'cmToM':
+                        res = (value / 100).toFixed(2) + " m";
+                        break;
+                    case 'mToCm':
+                        res = (value * 100).toFixed(2) + " cm";
+                        break;
+                }
+            }
+
+            document.getElementById('result').textContent = res;
+        }
+    </script>
+
+</body>
+</html>
